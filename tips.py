@@ -9,23 +9,24 @@ data = date.today().strftime("%d/%m/%Y")
 st.header('Pankina ' + data)
 
 #Tips totali
-tip_amount = st.text_input("Total tips amount", 3330.0)
+tip_amount = st.text_input("Total tips amount", 0.0)
 
-waiters = st.slider('Number of waiters', value = 1,
-            min_value = 1, max_value = 10, step = 1)
-barmen = st.slider('Number of barmen', value = 1,
-            min_value = 1, max_value = 10, step = 1)
-ahmash = st.slider('Number of ahmash', value = 1,
-            min_value = 1, max_value = 10, step = 1)
+waiters = st.slider('Number of melzarim', value = 1,
+            min_value = 0, max_value = 10, step = 1)
+barmen = st.slider('Number of barmanim', value = 1,
+            min_value = 0, max_value = 10, step = 1)
+ahmash = st.slider('Number of ahmash', value = 0,
+            min_value = 0, max_value = 10, step = 1)
 
-st.subheader('Hours per waiter')
+st.subheader('Hours per melzar')
 
 melzarim = np.array([0.0 for x in range(int(waiters))])
+
 for i in range(int(waiters)):
-    start_hours_txt = "Start time waiter " + str(i+1)
+    start_hours_txt = "Start time melzar " + str(i+1)
     start_time = st.time_input(start_hours_txt, datetime.time(8, 45))
     start = datetime.datetime.combine(datetime.date.today(), start_time)
-    end_hours_txt = "End time waiter " + str(i+1)
+    end_hours_txt = "End time melzar " + str(i+1)
     end_time = st.time_input(end_hours_txt, datetime.time(8, 45))
     end = datetime.datetime.combine(datetime.date.today(), end_time)
     difference = end - start
@@ -37,7 +38,9 @@ for i in range(int(waiters)):
         melzarim[i] = difference.total_seconds() / 3600
     
 st.subheader('Hours per barman')
+
 barmanim = np.array([0.0 for x in range(int(barmen))])
+
 for i in range(int(barmen)):
     start_hours_txt = "Start time barman " + str(i+1)
     start_time = st.time_input(start_hours_txt, datetime.time(8, 45))
@@ -55,7 +58,8 @@ for i in range(int(barmen)):
 
 st.subheader('Hours per ahmash')
 
-ahmash = np.array([0.0 for x in range(int(ahmash))])
+ahmashim = np.array([0.0 for x in range(int(ahmash))])
+
 for i in range(int(ahmash)):
     start_hours_txt = "Start time ahmash " + str(i+1)
     start_time = st.time_input(start_hours_txt, datetime.time(8, 45))
@@ -66,10 +70,10 @@ for i in range(int(ahmash)):
     difference = end - start
     if difference.total_seconds() / 3600 < 0:
         st.write(24 + difference.total_seconds() / 3600)
-        ahmash[i] =  24 + difference.total_seconds() / 3600
+        ahmashim[i] =  24 + difference.total_seconds() / 3600
     else:
         st.write(difference.total_seconds() / 3600)
-        ahmash[i] = difference.total_seconds() / 3600
+        ahmashim[i] = difference.total_seconds() / 3600
 
 # First two hours are 35 shekels each
 melzarim[0] -= 2
@@ -77,10 +81,9 @@ total_tip = float(tip_amount) - 70
 
 total_hours_melzarim = np.sum(melzarim)
 total_hours_barmanim = np.sum(barmanim)
-total_hours_ahmash = np.sum(ahmash)
+total_hours_ahmashim = np.sum(ahmashim)
 
 tip_per_hour = total_tip / total_hours_melzarim
-tip_per_hour = total_tip / sum(total_hours_melzarim,(total_hours_ahmash/3))
 
 if tip_per_hour >= 100:
     ahuz = 0.9
@@ -89,9 +92,9 @@ elif tip_per_hour < 100 and tip_per_hour >= 60:
 else:
     ahuz = 0.95
 
-melzar_tip = (total_tip * ahuz)/total_hours_melzarim
 barman_tip = (total_tip * (1-ahuz))/total_hours_barmanim
-ahmash_tip = (melzar_tip * total_hours_ahmash/3)
+melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmash/3)
+ahmash_tip = melzar_tip/3
 
 results = {}
 restaurant_entry = 0
@@ -106,11 +109,10 @@ for i,barman in enumerate(barmanim):
     name = 'Barman ' + str(i+1)
     results[name] = barman_tip*barman
 
-for i,ahmash in enumerate(ahmash):
+for i,ahmash in enumerate(ahmashim):
     name = 'Ahmash ' + str(i+1)
     results[name] = ahmash_tip*ahmash
-
-
+            
 results['Restaurant'] = restaurant_entry
 
 st.subheader('Tips per worker')

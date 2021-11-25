@@ -93,7 +93,7 @@ else:
     ahuz = 0.95
 
 barman_tip = (total_tip * (1-ahuz))/total_hours_barmanim
-melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmash/3)
+melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmashim/3)
 ahmash_tip = melzar_tip/3
 
 results = {}

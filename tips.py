@@ -18,7 +18,8 @@ barmen = st.slider('Number of barmanim', value = 1,
 ahmash = st.slider('Number of ahmash', value = 0,
             min_value = 0, max_value = 10, step = 1)
 
-st.subheader('Hours per melzar')
+if int(waiters) > 0:
+    st.subheader('Hours per melzar')
 
 melzarim = np.array([0.0 for x in range(int(waiters))])
 
@@ -37,7 +38,8 @@ for i in range(int(waiters)):
         st.write(difference.total_seconds() / 3600)
         melzarim[i] = difference.total_seconds() / 3600
     
-st.subheader('Hours per barman')
+if int(barmen) > 0:
+    st.subheader('Hours per barman')
 
 barmanim = np.array([0.0 for x in range(int(barmen))])
 
@@ -56,7 +58,8 @@ for i in range(int(barmen)):
         st.write(difference.total_seconds() / 3600)
         barmanim[i] = difference.total_seconds() / 3600
 
-st.subheader('Hours per ahmash')
+if int(ahmash) > 0:
+    st.subheader('Hours per ahmash')
 
 ahmashim = np.array([0.0 for x in range(int(ahmash))])
 
@@ -85,6 +88,7 @@ total_hours_ahmashim = np.sum(ahmashim)
 
 tip_per_hour = total_tip / total_hours_melzarim
 
+#Percentuale barman
 if tip_per_hour >= 100:
     ahuz = 0.9
 elif tip_per_hour < 100 and tip_per_hour >= 60:
@@ -93,8 +97,11 @@ else:
     ahuz = 0.95
 
 barman_tip = (total_tip * (1-ahuz))/total_hours_barmanim
-melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmashim/3)
-ahmash_tip = melzar_tip/3
+
+#Parametro ahmash
+parametro_ahmash = 3
+melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmashim/parametro_ahmash)
+ahmash_tip = melzar_tip/parametro_ahmash
 
 results = {}
 restaurant_entry = 0

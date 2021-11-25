@@ -122,6 +122,8 @@ for i,ahmash in enumerate(ahmashim):
             
 results['Restaurant'] = restaurant_entry
 
+results['Tip per hour'] = melzar_tip
+
 st.subheader('Tips per worker')
 df = pd.DataFrame.from_dict(results, orient = 'index')
 df = df.rename({0: 'tips'}, axis = 'columns')

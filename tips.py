@@ -99,7 +99,7 @@ else:
 barman_tip = (total_tip * (1-ahuz))/total_hours_barmanim
 
 #Parametro ahmash
-parametro_ahmash = 0
+parametro_ahmash = 4
 melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmashim/parametro_ahmash)
 ahmash_tip = melzar_tip/parametro_ahmash
 

@@ -67,30 +67,6 @@ for i in range(int(ahmash)):
         st.write(difference.total_seconds() / 3600)
         ahmash[i] = difference.total_seconds() / 3600
 
-
-if False:
-
-    st.subheader('Hours per waiter')
-    melzarim = np.array([0.0 for x in range(int(waiters))])
-    for i in range(int(waiters)):
-        x = st.time_input('Entry ', datetime.time(8, 45))
-        hours = "Total hours worked by waiter " + str(i+1)
-        melzarim[i] = st.text_input(hours, 0.0)
-        
-    st.subheader('Hours per barman')
-    barmanim = np.array([0.0 for x in range(int(barmen))])
-    for i in range(int(barmen)):
-        hours = "Total hours worked by barman " + str(i+1)
-        barmanim[i] = st.text_input(hours, 0.0)
-
-     st.subheader('Hours per ahmash')
-
-    ahmash = np.array([0.0 for x in range(int(ahmash))])
-    for i in range(int(barmen)):
-        hours = "Total hours worked by ahmash " + str(i+1)
-        ahmash[i] = st.text_input(hours, 0.0)
-
-
 # First two hours are 35 shekels each
 melzarim[0] -= 2
 total_tip = float(tip_amount) - 70

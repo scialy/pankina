@@ -4,9 +4,13 @@ import streamlit as st
 import datetime
 from datetime import date
 
+# calcolo data attuale e titolo
 data = date.today().strftime("%d/%m/%Y")
 st.header('Pankina ' + data)
-tip_amount = st.text_input("Total tips amount", 0.0)
+
+#Tips totali
+tip_amount = st.text_input("Total tips amount", 3330.0)
+
 waiters = st.slider('Number of waiters', value = 1,
             min_value = 1, max_value = 10, step = 1)
 barmen = st.slider('Number of barmen', value = 1,

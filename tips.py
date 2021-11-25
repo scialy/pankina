@@ -25,10 +25,10 @@ melzarim = np.array([0.0 for x in range(int(waiters))])
 
 for i in range(int(waiters)):
     start_hours_txt = "Start time melzar " + str(i+1)
-    start_time = st.time_input(start_hours_txt, datetime.time(8, 45))
+    start_time = st.time_input(start_hours_txt, datetime.time(10, 0))
     start = datetime.datetime.combine(datetime.date.today(), start_time)
     end_hours_txt = "End time melzar " + str(i+1)
-    end_time = st.time_input(end_hours_txt, datetime.time(8, 45))
+    end_time = st.time_input(end_hours_txt, datetime.time(17, 30))
     end = datetime.datetime.combine(datetime.date.today(), end_time)
     difference = end - start
     if difference.total_seconds() / 3600 < 0:
@@ -45,10 +45,10 @@ barmanim = np.array([0.0 for x in range(int(barmen))])
 
 for i in range(int(barmen)):
     start_hours_txt = "Start time barman " + str(i+1)
-    start_time = st.time_input(start_hours_txt, datetime.time(8, 45))
+    start_time = st.time_input(start_hours_txt, datetime.time(12, 0))
     start = datetime.datetime.combine(datetime.date.today(), start_time)
     end_hours_txt = "End time barman " + str(i+1)
-    end_time = st.time_input(end_hours_txt, datetime.time(8, 45))
+    end_time = st.time_input(end_hours_txt, datetime.time(18, 0))
     end = datetime.datetime.combine(datetime.date.today(), end_time)
     difference = end - start
     if difference.total_seconds() / 3600 < 0:
@@ -65,10 +65,10 @@ ahmashim = np.array([0.0 for x in range(int(ahmash))])
 
 for i in range(int(ahmash)):
     start_hours_txt = "Start time ahmash " + str(i+1)
-    start_time = st.time_input(start_hours_txt, datetime.time(8, 45))
+    start_time = st.time_input(start_hours_txt, datetime.time(12, 0))
     start = datetime.datetime.combine(datetime.date.today(), start_time)
     end_hours_txt = "End time ahmash " + str(i+1)
-    end_time = st.time_input(end_hours_txt, datetime.time(8, 45))
+    end_time = st.time_input(end_hours_txt, datetime.time(18, 0))
     end = datetime.datetime.combine(datetime.date.today(), end_time)
     difference = end - start
     if difference.total_seconds() / 3600 < 0:

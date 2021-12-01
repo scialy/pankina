@@ -98,8 +98,14 @@ else:
 
 barman_tip = (total_tip * (1-ahuz))/total_hours_barmanim
 
-#Parametro ahmash
-parametro_ahmash = 5
+#Parametro Ahmash
+if tip_per_hour >= 100:
+    parametro_ahmash = 4
+elif tip_per_hour < 100 and tip_per_hour >= 50:
+    parametro_ahmash = 4.5
+else:
+    parametro_ahmash = 0
+
 melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmashim/parametro_ahmash)
 ahmash_tip = melzar_tip/parametro_ahmash
 

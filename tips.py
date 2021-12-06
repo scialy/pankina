@@ -3,6 +3,10 @@ import numpy as np
 import streamlit as st
 import datetime
 from datetime import date
+import smtplib, ssl
+from email.mime.text import MIMEText
+from email.mime.application import MIMEApplication
+from email.mime.multipart import MIMEMultipart
 
 # calcolo data attuale e titolo
 data = date.today().strftime("%d/%m/%Y")
@@ -110,6 +114,7 @@ melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmashim/param
 ahmash_tip = melzar_tip/parametro_ahmash
 
 results = {}
+results['total tips'] = tip_amount
 restaurant_entry = 0
 for i,melzar in enumerate(melzarim):
     restaurant_entry += melzar*3
@@ -136,3 +141,44 @@ df = df.rename({0: 'tips'}, axis = 'columns')
 df.reset_index(inplace = True)
 df = df.rename(columns = {'index': 'worker'})
 st.write(df)
+
+smtp_server = "smtp.gmail.com"
+port = 587  # For starttls
+sender_email = "pankinatip@gmail.com"
+password = 'M1chelangel0'
+receiver_email = "michelangelonaim@gmail.com"
+
+# Create a secure SSL context
+context = ssl.create_default_context()
+
+msg = MIMEMultipart()
+msg['Subject'] = 'Pankina ' + data
+msg['From'] = sender_email
+
+html = """\
+<html>
+  <head></head>
+  <body>
+    {0}
+  </body>
+</html>
+""".format(df.to_html())
+
+part1 = MIMEText(html, 'html')
+msg.attach(part1)
+
+if st.button('Send Email'):
+    # Try to log in to server and send email
+    try:
+        server = smtplib.SMTP(smtp_server,port)
+        server.ehlo() # Can be omitted
+        server.starttls(context=context) # Secure the connection
+        server.ehlo() # Can be omitted
+        server.login(sender_email, password)
+        server.sendmail(msg['From'], receiver_email , msg.as_string())
+        st.success('Email sent successfully')
+    except Exception as e:
+        # Print any error messages to stdout
+        st.error('Check connection')
+    finally:
+        server.quit()

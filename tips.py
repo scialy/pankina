@@ -144,7 +144,8 @@ smtp_server = "smtp.gmail.com"
 port = 587  # For starttls
 sender_email = "pankinatip@gmail.com"
 password = 'M1chelangel0'
-receiver_email = "michelangelonaim@gmail.com"
+recipients = ["michelangelonaim@gmail.com","michelangelonaim@gmail.com"]
+receiver_email = [elem.strip().split(',') for elem in recipients]
 
 # Create a secure SSL context
 context = ssl.create_default_context()

@@ -108,7 +108,7 @@ if tip_per_hour >= 100:
 elif tip_per_hour < 100 and tip_per_hour >= 50:
     parametro_ahmash = 4.5
 else:
-    parametro_ahmash = total_hours_ahmashim
+    parametro_ahmash = 1
 
 melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmashim/parametro_ahmash)
 ahmash_tip = melzar_tip/parametro_ahmash
@@ -131,7 +131,6 @@ for i,ahmash in enumerate(ahmashim):
     results[name] = ahmash_tip*ahmash
             
 results['Restaurant'] = restaurant_entry
-
 results['Tip per hour'] = melzar_tip
 
 st.subheader('Tips per worker')

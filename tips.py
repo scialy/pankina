@@ -114,6 +114,7 @@ melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmashim/param
 ahmash_tip = melzar_tip/parametro_ahmash
 
 results = {}
+results['Total tips'] = float(tip_amount)
 restaurant_entry = 0
 for i,melzar in enumerate(melzarim):
     restaurant_entry += melzar*3
@@ -131,7 +132,6 @@ for i,ahmash in enumerate(ahmashim):
     results[name] = ahmash_tip*ahmash
             
 results['Restaurant'] = restaurant_entry
-results['Total tips'] = tip_amount
 
 st.subheader('Tips per worker')
 df = pd.DataFrame.from_dict(results, orient = 'index')

@@ -108,7 +108,7 @@ if tip_per_hour >= 100:
 elif tip_per_hour < 100 and tip_per_hour >= 50:
     parametro_ahmash = 4.5
 else:
-    parametro_ahmash = 1
+    parametro_ahmash = total_hours_ahmashim
 
 melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmashim/parametro_ahmash)
 ahmash_tip = melzar_tip/parametro_ahmash

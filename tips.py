@@ -98,8 +98,7 @@ total_hours_barmanim = np.sum(barmanim)
 total_hours_ahmashim = np.sum(ahmashim)
 
 restaurant_entry = total_hours_melzarim*3
-
-total_tip = tip_amount - restaurant_entry
+total_tip = np.float(tip_amount) - restaurant_entry
 tip_per_hour = total_tip / total_hours_melzarim
 
 #Percentuale barman

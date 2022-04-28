@@ -123,8 +123,11 @@ melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmashim/param
 ahmash_tip = melzar_tip/parametro_ahmash
 
 results = {}
+
 results['Shabbat'] = str(shabbat)
 results['Total tips'] = str(tip_amount)
+results['Tip per hour'] = str(tip_per_hour)
+
 for i,melzar in enumerate(melzarim):
     name = 'Waiter ' + str(i+1)
     if i == 0:
@@ -134,6 +137,7 @@ for i,melzar in enumerate(melzarim):
             results[name] = str((melzar_tip)*melzar)
     else:
         results[name] = str((melzar_tip)*melzar)
+
 for i,barman in enumerate(barmanim):
     name = 'Barman ' + str(i+1)
     results[name] = str(barman_tip*barman)

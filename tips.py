@@ -97,6 +97,9 @@ total_hours_melzarim = np.sum(melzarim)
 total_hours_barmanim = np.sum(barmanim)
 total_hours_ahmashim = np.sum(ahmashim)
 
+restaurant_entry = total_hours_melzarim*3
+
+total_tip = tip_amount - restaurant_tip
 tip_per_hour = total_tip / total_hours_melzarim
 
 #Percentuale barman
@@ -123,17 +126,15 @@ ahmash_tip = melzar_tip/parametro_ahmash
 results = {}
 results['Shabbat'] = str(shabbat)
 results['Total tips'] = str(tip_amount)
-restaurant_entry = 0
 for i,melzar in enumerate(melzarim):
-    restaurant_entry += melzar*3
     name = 'Waiter ' + str(i+1)
     if i == 0:
         if shabbat == 'No':
-            results[name] = str((melzar_tip - 3)*melzar + 70)
+            results[name] = str((melzar_tip)*melzar + 70)
         else:
-            results[name] = str((melzar_tip - 3)*melzar)
+            results[name] = str((melzar_tip)*melzar)
     else:
-        results[name] = str((melzar_tip - 3)*melzar)
+        results[name] = str((melzar_tip)*melzar)
 for i,barman in enumerate(barmanim):
     name = 'Barman ' + str(i+1)
     results[name] = str(barman_tip*barman)

@@ -114,7 +114,7 @@ barman_tip = (total_tip * (1-ahuz))/total_hours_barmanim
 
 #Parametro Ahmash
 if tip_per_hour >= 100:
-    parametro_ahmash = 4.5
+    parametro_ahmash = 6
 elif tip_per_hour < 100 and tip_per_hour >= 50:
     parametro_ahmash = 5
 else:

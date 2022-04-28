@@ -12,6 +12,10 @@ from email.mime.multipart import MIMEMultipart
 data = date.today().strftime("%d/%m/%Y")
 st.header('Pankina ' + data)
 
+shabbat = st.radio(
+     'Is shabbat today?',
+     ['No', 'Yes'])
+
 #Tips totali
 tip_amount = st.text_input("Total tips amount", 0.0)
 
@@ -82,9 +86,10 @@ for i in range(int(ahmash)):
         st.write(difference.total_seconds() / 3600)
         ahmashim[i] = difference.total_seconds() / 3600
 
-# First two hours are 35 shekels each
-melzarim[0] -= 2
-total_tip = float(tip_amount) - 70
+if shabbat == 'No':
+    # First two hours are 35 shekels each
+    melzarim[0] -= 2
+    total_tip = float(tip_amount) - 70
 
 total_hours_melzarim = np.sum(melzarim)
 total_hours_barmanim = np.sum(barmanim)
@@ -114,13 +119,17 @@ melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmashim/param
 ahmash_tip = melzar_tip/parametro_ahmash
 
 results = {}
+results['Shabbat'] = shabbat
 results['Total tips'] = float(tip_amount)
 restaurant_entry = 0
 for i,melzar in enumerate(melzarim):
     restaurant_entry += melzar*3
     name = 'Waiter ' + str(i+1)
     if i == 0:
-        results[name] = (melzar_tip - 3)*melzar + 70
+        if shabbat == 'No':
+            results[name] = (melzar_tip - 3)*melzar + 70
+        else:
+            results[name] = (melzar_tip - 3)*melzar
     else:
         results[name] = (melzar_tip - 3)*melzar
 for i,barman in enumerate(barmanim):

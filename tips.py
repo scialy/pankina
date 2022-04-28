@@ -145,6 +145,7 @@ for i,ahmash in enumerate(ahmashim):
 results['Restaurant'] = str(restaurant_entry)
 
 st.subheader('Tips per worker')
+st.write(tip_per_hour)
 df = pd.DataFrame.from_dict(results, orient = 'index')
 df = df.rename({0: 'tips'}, axis = 'columns')
 df.reset_index(inplace = True)

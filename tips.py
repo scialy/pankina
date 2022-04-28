@@ -121,7 +121,7 @@ melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmashim/param
 ahmash_tip = melzar_tip/parametro_ahmash
 
 results = {}
-results['Shabbat'] = 1
+results['Shabbat'] = 'CIAO'
 results['Total tips'] = float(tip_amount)
 restaurant_entry = 0
 for i,melzar in enumerate(melzarim):

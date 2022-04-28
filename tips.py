@@ -121,28 +121,28 @@ melzar_tip = (total_tip * ahuz)/(total_hours_melzarim+total_hours_ahmashim/param
 ahmash_tip = melzar_tip/parametro_ahmash
 
 results = {}
-results['Shabbat'] = 'CIAO'
-results['Total tips'] = float(tip_amount)
+results['Shabbat'] = str(shabbat)
+results['Total tips'] = str(tip_amount)
 restaurant_entry = 0
 for i,melzar in enumerate(melzarim):
     restaurant_entry += melzar*3
     name = 'Waiter ' + str(i+1)
     if i == 0:
         if shabbat == 'No':
-            results[name] = (melzar_tip - 3)*melzar + 70
+            results[name] = str((melzar_tip - 3)*melzar + 70)
         else:
-            results[name] = (melzar_tip - 3)*melzar
+            results[name] = str((melzar_tip - 3)*melzar)
     else:
-        results[name] = (melzar_tip - 3)*melzar
+        results[name] = str((melzar_tip - 3)*melzar)
 for i,barman in enumerate(barmanim):
     name = 'Barman ' + str(i+1)
-    results[name] = barman_tip*barman
+    results[name] = str(barman_tip*barman)
 
 for i,ahmash in enumerate(ahmashim):
     name = 'Ahmash ' + str(i+1)
-    results[name] = ahmash_tip*ahmash
+    results[name] = str(ahmash_tip*ahmash)
             
-results['Restaurant'] = restaurant_entry
+results['Restaurant'] = str(restaurant_entry)
 
 st.subheader('Tips per worker')
 df = pd.DataFrame.from_dict(results, orient = 'index')

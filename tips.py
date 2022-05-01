@@ -155,7 +155,7 @@ for i,ahmash in enumerate(ahmashim):
     
 results['Restaurant'] = str(restaurant_entry)
 a += restaurant_entry
-st.write(a)
+#st.write(a)
 
 st.subheader('Tips per worker')
 #st.write(tip_per_hour)

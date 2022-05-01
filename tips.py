@@ -152,6 +152,8 @@ for i,ahmash in enumerate(ahmashim):
     name = 'Ahmash ' + str(i+1)
     results[name] = str(ahmash_tip*ahmash)
     a += ahmash_tip*ahmash
+    
+st.write(str(a))
             
 results['Restaurant'] = str(restaurant_entry)
 

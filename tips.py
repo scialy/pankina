@@ -90,14 +90,17 @@ if shabbat == 'No':
     # First two hours are 35 shekels each
     melzarim[0] -= 2
     total_tip = float(tip_amount) - 70
-    restaurant_entry = (total_hours_melzarim-2)*3
 else:
     total_tip = float(tip_amount)
-    restaurant_entry = total_hours_melzarim*3
 
 total_hours_melzarim = np.sum(melzarim)
 total_hours_barmanim = np.sum(barmanim)
 total_hours_ahmashim = np.sum(ahmashim)
+
+if shabbat == 'No':
+    restaurant_entry = (total_hours_melzarim-2)*3
+else:
+    restaurant_entry = total_hours_melzarim*3
 
 total_tip = np.float(tip_amount) - restaurant_entry
 tip_per_hour = total_tip / total_hours_melzarim

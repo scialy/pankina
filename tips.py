@@ -90,15 +90,15 @@ if shabbat == 'No':
     # First two hours are 35 shekels each
     melzarim[0] -= 2
     total_tip = float(tip_amount) - 70
-    st.write(total_tip)
+    restaurant_entry = (total_hours_melzarim-2)*3
 else:
     total_tip = float(tip_amount)
+    restaurant_entry = total_hours_melzarim*3
 
 total_hours_melzarim = np.sum(melzarim)
 total_hours_barmanim = np.sum(barmanim)
 total_hours_ahmashim = np.sum(ahmashim)
 
-restaurant_entry = total_hours_melzarim*3
 total_tip = np.float(tip_amount) - restaurant_entry
 tip_per_hour = total_tip / total_hours_melzarim
 
@@ -156,7 +156,7 @@ for i,ahmash in enumerate(ahmashim):
     
 results['Restaurant'] = str(restaurant_entry)
 a += restaurant_entry
-st.write(str(a))
+st.write(a)
 
 st.subheader('Tips per worker')
 #st.write(tip_per_hour)

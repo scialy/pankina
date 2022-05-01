@@ -134,14 +134,14 @@ for i,melzar in enumerate(melzarim):
     name = 'Waiter ' + str(i+1)
     if i == 0:
         if shabbat == 'No':
-            results[name] = str((melzar_tip - 3)*melzar + 70)
-            a += (melzar_tip - 3)*melzar + 70
+            results[name] = str((melzar_tip)*melzar + 70)
+            a += (melzar_tip)*melzar + 70
         else:
-            results[name] = str((melzar_tip - 3)*melzar)
-            a += (melzar_tip - 3)*melzar
+            results[name] = str((melzar_tip)*melzar)
+            a += (melzar_tip)*melzar
     else:
-        results[name] = str((melzar_tip- 3)*melzar)
-        a += (melzar_tip - 3)*melzar
+        results[name] = str((melzar_tip)*melzar)
+        a += (melzar_tip)*melzar
 
 for i,barman in enumerate(barmanim):
     name = 'Barman ' + str(i+1)

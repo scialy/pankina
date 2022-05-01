@@ -128,23 +128,30 @@ results['Shabbat'] = str(shabbat)
 results['Total tips'] = str(tip_amount)
 results['Tip per hour'] = str(tip_per_hour)
 
+a = 0
+
 for i,melzar in enumerate(melzarim):
     name = 'Waiter ' + str(i+1)
     if i == 0:
         if shabbat == 'No':
             results[name] = str((melzar_tip - 3)*melzar + 70)
+            a += (melzar_tip - 3)*melzar + 70
         else:
             results[name] = str((melzar_tip - 3)*melzar)
+            a += (melzar_tip - 3)*melzar
     else:
         results[name] = str((melzar_tip- 3)*melzar)
+        a += (melzar_tip - 3)*melzar
 
 for i,barman in enumerate(barmanim):
     name = 'Barman ' + str(i+1)
     results[name] = str(barman_tip*barman)
+    a += barman_tip*barman
 
 for i,ahmash in enumerate(ahmashim):
     name = 'Ahmash ' + str(i+1)
     results[name] = str(ahmash_tip*ahmash)
+    a += ahmash_tip*ahmash
             
 results['Restaurant'] = str(restaurant_entry)
 

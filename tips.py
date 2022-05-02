@@ -101,20 +101,18 @@ restaurant_entry = total_hours_melzarim*3
 total_tip = np.float(total_tip) - restaurant_entry
 tip_per_hour = total_tip / total_hours_melzarim
 
-#Percentuale barman
-if tip_per_hour >= 100:
-    ahuz = 0.9
-elif tip_per_hour < 100 and tip_per_hour >= 60:
-    ahuz = 0.93
-else:
-    ahuz = 0.95
-
 if total_hours_barmanim > 0:
-    barman_tip = (total_tip * (1-ahuz))/total_hours_barmanim
+    #Percentuale barman
+    if tip_per_hour >= 100:
+        ahuz = 0.9
+    elif tip_per_hour < 100 and tip_per_hour >= 60:
+        ahuz = 0.93
+    else:
+        ahuz = 0.95
 else:
-    barman_tip = 0
-    
-st.write(barman_tip)
+    ahuz = 1
+
+barman_tip = (total_tip * (1-ahuz))/total_hours_barmanim
 
 #Parametro Ahmash
 if tip_per_hour >= 100:

@@ -113,6 +113,8 @@ if total_hours_barmanim > 0:
     barman_tip = (total_tip * (1-ahuz))/total_hours_barmanim
 else:
     barman_tip = 0
+    
+st.write(barman_tip)
 
 #Parametro Ahmash
 if tip_per_hour >= 100:

@@ -109,7 +109,10 @@ elif tip_per_hour < 100 and tip_per_hour >= 60:
 else:
     ahuz = 0.95
 
-barman_tip = (total_tip * (1-ahuz))/total_hours_barmanim
+if total_hours_barmanim > 0:
+    barman_tip = (total_tip * (1-ahuz))/total_hours_barmanim
+else:
+    barman_tip = 0
 
 #Parametro Ahmash
 if tip_per_hour >= 100:

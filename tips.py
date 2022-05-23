@@ -129,7 +129,7 @@ results = {}
 
 results['Shabbat'] = str(shabbat)
 results['Total tips'] = str(tip_amount)
-results['Tip per hour'] = str(tip_per_hour)
+results['Tip per hour'] = str("{:.2f}".format(tip_per_hour))
 
 a = 0
 
@@ -137,26 +137,31 @@ for i,melzar in enumerate(melzarim):
     name = 'Waiter ' + str(i+1)
     if i == 0:
         if shabbat == 'No':
-            results[name] = str((melzar_tip)*melzar + 70)
-            a += (melzar_tip)*melzar + 70
+            value = (melzar_tip)*melzar + 70
+            results[name] = str("{:.2f}".format(value))
+            a += value
         else:
-            results[name] = str((melzar_tip)*melzar)
-            a += (melzar_tip)*melzar
+            value = (melzar_tip)*melzar
+            results[name] = str("{:.2f}".format(value))
+            a += value
     else:
-        results[name] = str((melzar_tip)*melzar)
-        a += (melzar_tip)*melzar
+        value = (melzar_tip)*melzar
+        results[name] = str("{:.2f}".format(value))
+        a += value
 
 for i,barman in enumerate(barmanim):
     name = 'Barman ' + str(i+1)
-    results[name] = str(barman_tip*barman)
-    a += barman_tip*barman
+    value = barman_tip*barman
+    results[name] = str("{:.2f}".format(value))
+    a += value
 
 for i,ahmash in enumerate(ahmashim):
     name = 'Ahmash ' + str(i+1)
-    results[name] = str(ahmash_tip*ahmash)
-    a += ahmash_tip*ahmash
+    value = ahmash_tip*ahmash
+    results[name] = str("{:.2f}".format(value))
+    a += value
     
-results['Restaurant'] = str(restaurant_entry)
+results['Restaurant'] = str("{:.2f}".format(restaurant_entry))
 a += restaurant_entry
 #st.write(a)
 

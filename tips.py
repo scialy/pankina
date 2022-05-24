@@ -129,7 +129,8 @@ results = {}
 
 results['Shabbat'] = str(shabbat)
 results['Total tips'] = str(tip_amount)
-results['Tip per hour'] = str("{:.1f}".format(tip_per_hour))
+# results['Tip per hour'] = str("{:.1f}".format(tip_per_hour))
+results['Tip per hour (melzar)'] = str("{:.1f}".format(melzar_tip))
 
 a = 0
 
